@@ -10,9 +10,13 @@ In the top space labeled "Workspace URL", paste the link to this repo:
 
 `https://github.com/gradient-ai/jax-gradient`
 
-In the section below, paste the following into the space labeled container name:
+In the section below, paste the following into the space labeled Container Name:
 
 `cwetherill/jax:latest`
+
+Finally, for the Container Command, enter the following:
+
+`jupyter notebook --allow-root --ip=0.0.0.0 --no-browser --NotebookApp.trust_xheaders=True --NotebookApp.disable_check_xsrf=False --NotebookApp.allow_remote_access=True --NotebookApp.allow_origin='*' --LabApp.kernel_manager_class=notebook.services.kernels.kernelmanager.AsyncMappingKernelManager`
 
 This will create your instance with the startup notebooks for Jax in a container configured to run with Gradient. It also comes pre installed with tensorflow and matplotlib
 
