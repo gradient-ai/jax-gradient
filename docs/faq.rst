@@ -221,7 +221,7 @@ for comparing JAX versus NumPy, making using of IPython's convenient
     %time f_jit(x_jax).block_until_ready()  # measure JAX compilation time
     %timeit f_jit(x_jax).block_until_ready()  # measure JAX runtime
 
-When run with a GPU in Colab_, we see:
+When run with a GPU in Gradient, we see:
 
 - NumPy takes 16.2 ms per evaluation on the CPU
 - JAX takes 1.26 ms to copy the NumPy arrays onto the GPU
@@ -242,7 +242,6 @@ JAX/accelerators vs NumPy/CPU. For example, if we switch this example to use
 .. _To JIT or not to JIT: https://jax.readthedocs.io/en/latest/notebooks/thinking_in_jax.html#to-jit-or-not-to-jit
 .. _Double (64 bit) precision: https://jax.readthedocs.io/en/latest/notebooks/Common_Gotchas_in_JAX.html#double-64bit-precision
 .. _`%time and %timeit magics`: https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-time
-.. _Colab: https://colab.research.google.com/
 
 .. _faq-jax-vs-numpy:
 

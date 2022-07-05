@@ -30,7 +30,7 @@ guidance on pip installation (e.g., for GPU and TPU support).
 
 To build `jaxlib` from source, you must also install some prerequisites:
 
-* a C++ compiler (g++, clang, or MSVC)
+- a C++ compiler (g++, clang, or MSVC)
 
   On Ubuntu or Debian you can install the necessary prerequisites with:
 
@@ -42,7 +42,8 @@ To build `jaxlib` from source, you must also install some prerequisites:
   are installed.
 
   See below for Windows build instructions.
-* Python packages: `numpy`, `six`, `wheel`.
+
+- Python packages: `numpy`, `six`, `wheel`.
 
   The `six` package is required for during the jaxlib build only, and is not
   required at install time.
@@ -94,6 +95,7 @@ for more details. Install the following packages:
 ```
 pacman -S patch coreutils
 ```
+
 Once coreutils is installed, the realpath command should be present in your shell's path.
 
 Once everything is installed. Open PowerShell, and make sure MSYS2 is in the
@@ -172,7 +174,7 @@ the tests of `jax.numpy.pad` using:
 python tests/lax_numpy_test.py --test_targets="testPad"
 ```
 
-The Colab notebooks are tested for errors as part of the documentation build.
+The notebooks are tested for errors as part of the documentation build.
 
 Note that to run the full pmap tests on a (multi-core) CPU-only machine, you
 can run:
@@ -197,18 +199,24 @@ mypy --config=mypy.ini --show-error-codes jax
 # Update documentation
 
 To rebuild the documentation, install several packages:
+
 ```
 pip install -r docs/requirements.txt
 ```
+
 And then run:
+
 ```
 sphinx-build -b html docs docs/build/html
 ```
+
 This can take a long time because it executes many of the notebooks in the documentation source;
 if you'd prefer to build the docs without executing the notebooks, you can run:
+
 ```
 sphinx-build -b html -D jupyter_execute_notebooks=off docs docs/build/html
 ```
+
 You can then see the generated documentation in `docs/build/html/index.html`.
 
 (update-notebooks)=
@@ -217,16 +225,8 @@ You can then see the generated documentation in `docs/build/html/index.html`.
 
 We use [jupytext](https://jupytext.readthedocs.io/) to maintain two synced copies of the notebooks
 in `docs/notebooks`: one in `ipynb` format, and one in `md` format. The advantage of the former
-is that it can be opened and executed directly in Colab; the advantage of the latter is that
+is that it can be opened and executed directly in Gradient; the advantage of the latter is that
 it makes it much easier to track diffs within version control.
-
-### Editing ipynb
-
-For making large changes that substantially modify code and outputs, it is easiest to
-edit the notebooks in Jupyter or in Colab. To edit notebooks in the Colab interface,
-open <http://colab.research.google.com> and `Upload` from your local repo.
-Update it as needed, `Run all cells` then `Download ipynb`.
-You may want to test that it executes properly, using `sphinx-build` as explained above.
 
 ### Editing md
 
@@ -313,5 +313,3 @@ python -m pip install --exists-action=w --no-cache-dir -r docs/requirements.txt
 cd docs
 python `which sphinx-build` -T -E -b html -d _build/doctrees-readthedocs -D language=en . _build/html
 ```
-
-

@@ -15,6 +15,7 @@ kernelspec:
 # Transformations
 
 ```{currentmodule} jax
+
 ```
 
 At its core, JAX is an extensible system for transforming numerical functions.
@@ -137,7 +138,7 @@ instead of keeping the loop on the outside, it pushes the loop down into a
 function’s primitive operations for better performance.
 
 Using {func}`vmap` can save you from having to carry around batch dimensions in your
-code. For example, consider this simple *unbatched* neural network prediction
+code. For example, consider this simple _unbatched_ neural network prediction
 function:
 
 ```{code-cell}
@@ -256,8 +257,6 @@ def normalize(x):
 print(normalize(jnp.arange(4.)))
 ```
 
-You can even [nest `pmap` functions](https://colab.research.google.com/github/google/jax/blob/main/cloud_tpu_colabs/Pmap_Cookbook.ipynb#scrollTo=MdRscR5MONuN) for more sophisticated communication patterns.
-
 It all composes, so you're free to differentiate through parallel computations:
 
 ```{code-cell}
@@ -281,7 +280,3 @@ print(grad(lambda x: f(x).sum())(x))
 
 When reverse-mode differentiating a {func}`pmap` function (e.g. with {func}`grad`), the
 backward pass of the computation is parallelized just like the forward pass.
-
-See the [SPMD Cookbook](https://colab.research.google.com/github/google/jax/blob/main/cloud_tpu_colabs/Pmap_Cookbook.ipynb)
-and the [SPMD MNIST classifier from scratch example](https://github.com/google/jax/blob/main/examples/spmd_mnist_classifier_fromscratch.py)
-for more.

@@ -1,34 +1,3 @@
-# Using Jax with Gradient
-
-## Getting started:
-
-To set up a Jax capable notebook on Gradient, first login and go to the create notebook page.
-
-In the create page, first select the "PyTorch" runtime, and select an appropriate GPU. (Check out more information about our free GPU availability at [Gradient.Run!](https://gradient.run))
-
-Next, Scroll down to the advanced options, and click the toggle to expose the advanced options menu.
-
-In the top space labeled "Workspace URL", paste the link to this repo:
-
-`https://github.com/gradient-ai/jax-gradient`
-
-Then fill the container field with this link:
-
-'paperspace/nb-pytorch:22.02-py3'
-
-and then hit Start Notebook at the bottom.
-
-Then, when your notebook is ready, simply run the following in the terminal:
-
-pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-pip install "jax[cuda11_cudnn805]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
-This will create your instance with the startup notebooks for Jax in a container configured to run with Gradient.
-
-### For more information about Jax, go to https://github.com/google/jax
-
----
-
 <div align="center">
 <img src="https://raw.githubusercontent.com/google/jax/main/images/jax_logo_250px.png" alt="logo"></img>
 </div>
@@ -38,7 +7,7 @@ This will create your instance with the startup notebooks for Jax in a container
 ![Continuous integration](https://github.com/google/jax/workflows/Continuous%20integration/badge.svg)
 ![PyPI version](https://img.shields.io/pypi/v/jax)
 
-[**Quickstart**](#quickstart-notebook-in-the-cloud)
+[**Quickstart**](#quickstar-notebook-in-the-cloud)
 | [**Transformations**](#transformations)
 | [**Install guide**](#installation)
 | [**Neural net libraries**](#neural-network-libraries)
@@ -111,14 +80,13 @@ perex_grads = jit(vmap(grad_loss, in_axes=(None, 0, 0)))  # fast per-example gra
 - [Citing JAX](#citing-jax)
 - [Reference documentation](#reference-documentation)
 
-## Quickstart: Gradient Notebook in the Cloud
+## Quickstart: Notebook in the Cloud
 
 Jump right in using a notebook in your browser, connected to a Google Cloud GPU.
 Here are some starter notebooks:
 
-[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/ml-showcase/notebook/rlsjvsbkm9u7qde)
-
 - [The basics: NumPy on accelerators, `grad` for differentiation, `jit` for compilation, and `vmap` for vectorization](https://jax.readthedocs.io/en/latest/notebooks/quickstart.html)
+- [Training a Simple Neural Network, with TensorFlow Dataset Data Loading](https://console.paperspace.com/ml-showcase/notebook/rlsjvsbkm9u7qde)
 
 For a deeper dive into JAX:
 
@@ -510,6 +478,18 @@ sudo ln -s /path/to/cuda /usr/local/cuda-X.X
 
 Please let us know on [the issue tracker](https://github.com/google/jax/issues)
 if you run into any errors or problems with the prebuilt wheels.
+
+### pip installation: Google Cloud TPU
+
+JAX also provides pre-built wheels for
+[Google Cloud TPU](https://cloud.google.com/tpu/docs/users-guide-tpu-vm).
+To install JAX along with appropriate versions of `jaxlib` and `libtpu`, you can run
+the following in your cloud TPU VM:
+
+```bash
+pip install --upgrade pip
+pip install "jax[tpu]>=0.2.16" -f https://storage.googleapis.com/jax-releases/libtpu_releases.html
+```
 
 ### Building JAX from source
 

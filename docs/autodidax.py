@@ -26,9 +26,6 @@
 #     name: python3
 # ---
 
-# [![Open in
-# Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google/jax/blob/main/docs/autodidax.ipynb)
-
 # # Autodidax: JAX core from scratch
 #
 # Ever want to learn how JAX works, but the implementation seemed impenetrable?

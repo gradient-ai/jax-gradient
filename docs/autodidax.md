@@ -32,8 +32,7 @@ limitations under the License.
 ---
 ```
 
-[![Open in
-Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/google/jax/blob/main/docs/autodidax.ipynb)
+[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/ml-showcase/notebook/rlsjvsbkm9u7qde)
 
 +++
 
@@ -938,7 +937,7 @@ That's it for `jvp` and `vmap`!
 ## Part 2: Jaxprs
 
 The next transformations on the horizon are `jit` for just-in-time
-compilation and `vjp` for reverse-mode autodiff.  (`grad` is just a small
+compilation and `vjp` for reverse-mode autodiff. (`grad` is just a small
 wrapper around `vjp`.) Whereas `jvp` and `vmap` only needed each `Tracer` to
 carry a little bit of extra context, for both `jit` and `vjp` we need much
 richer context: we need to represent _programs_. That is, we need jaxprs!
@@ -1457,6 +1456,7 @@ by a function.
 
 There are two options for how to handle higher-order primitives. Each requires
 a different approach to tracing and engenders different tradeoffs:
+
 1. **On-the-fly processing, where `bind` takes a Python callable as an
    argument.** We defer forming a jaxpr until as late as possible, namely
    until we're running the final interpreter at the bottom of the interpreter
@@ -1893,22 +1893,28 @@ then we write `linearize : (a -> b) -> a -> (b, T a -o T b)`, using `T a` to
 mean "the tangent type of `a`" and using the "lollipop" `-o` rather than the
 arrow `->` to indicate a _linear_ function. We define the semantics of
 `linearize` in terms of `jvp` too:
+
 ```python
 y, f_lin = linearize(f, x)
 y_dot = f_lin(x_dot)
 ```
+
 gives the same result for `(y, y_dot)` as
+
 ```
 y, y_dot = jvp(f, (x,), (x_dot,))
 ```
+
 where the application of `f_lin` does not redo any of the linearization work.
 We'll represent the delayed linear part `f_lin : T a -o T b` as a jaxpr.
 
 Tangentially, now that we have linear arrows `-o`, we can provide a slightly
 more informative type for `jvp`:
+
 ```
 jvp : (a -> b) -> (UnrestrictedUse a, T a) -o (UnrestrictedUse b, T b)
 ```
+
 Here we're writing `UnrestrictedUse` just to indicate that we have a special
 pair where the first element can be used in an unrestricted (nonlinear) way.
 In conjunction with the linear arrow, this notation is just meant to express
@@ -2000,13 +2006,16 @@ remaining inputs and produces the remaining outputs.
 
 We like to think of partial evaluation as "unzipping" one computation into
 two. For example, consider this jaxpr:
+
 ```
 { lambda a:float64[] .
   let b:float64[] = sin a
       c:float64[] = neg b
   in ( c ) }
 ```
+
 A jaxpr for the JVP would look like:
+
 ```
 { lambda a:float64[] b:float64[] .
   let c:float64[] = sin a
@@ -2016,9 +2025,11 @@ A jaxpr for the JVP would look like:
       g:float64[] = neg e
   in ( f, g ) }
 ```
+
 If we imagine applying partial evaluation to this jaxpr with the first input
 known and the second unknown, we end up 'unzipping' the JVP jaxpr into primal
 and tangent jaxprs:
+
 ```
 { lambda a:float64[] .
   let c:float64[] = sin a
@@ -2026,12 +2037,14 @@ and tangent jaxprs:
       f:float64[] = neg c
   in ( f, d ) }
 ```
+
 ```
 { lambda d:float64[] b:float64[] .
   let e:float64[] = mul d b
       g:float64[] = neg e
   in ( g ) }
 ```
+
 This second jaxpr represents the linear computation that we want from
 `linearize`.
 
@@ -2441,8 +2454,7 @@ vjp       : (a -> b) -> a -> (b, T b -o T a)
 ```
 
 The only difference is that we transpose the linear part of the computation
-before returning it, so that it goes from type `T a -o T b` to type `T b -o T
-a`. That is, we'll implement `vjp` as, essentially,
+before returning it, so that it goes from type `T a -o T b` to type `T b -o T a`. That is, we'll implement `vjp` as, essentially,
 
 ```
 def vjp(f, x):
