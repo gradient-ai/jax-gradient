@@ -1,29 +1,8 @@
-# Using Jax with Gradient
+# JAX with Gradient
 
-## Getting started:
+This repo holds the workspace data for running JAX with Gradient.
 
-To set up a Jax capable notebook on Gradient, first login and go to the create notebook page.
-
-In the create page, first select the "PyTorch" runtime, and select an appropriate GPU. (Check out more information about our free GPU availability at [Gradient.Run!](https://gradient.run))
-
-Next, Scroll down to the advanced options, and click the toggle to expose the advanced options menu.
-
-In the top space labeled "Workspace URL", paste the link to this repo:
-
-`https://github.com/gradient-ai/jax-gradient`
-
-Then fill the container field with this link:
-
-'paperspace/nb-pytorch:22.02-py3'
-
-and then hit Start Notebook at the bottom.
-
-Then, when your notebook is ready, simply run the following in the terminal:
-
-pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-pip install "jax[cuda11_cudnn805]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
-This will create your instance with the startup notebooks for Jax in a container configured to run with Gradient.
+Use the tile in the Notebook Creation page, or use this repo's URL as the "Workspace URL" in the "Advanced Options" section.
 
 ### For more information about Jax, go to https://github.com/google/jax
 
