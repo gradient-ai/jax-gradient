@@ -2,7 +2,9 @@
 
 This repo holds the workspace data for running JAX with Gradient.
 
-Use the tile in the Notebook Creation page, or use this repo's URL as the "Workspace URL" in the "Advanced Options" section.
+Open this repo in Gradient:
+
+[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/jax-gradient/blob/main/notebooks/quickstart.ipynb)
 
 ### For more information about Jax, go to https://github.com/google/jax
 
