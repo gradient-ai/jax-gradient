@@ -4,7 +4,7 @@ This repo holds the workspace data for running JAX with Gradient.
 
 Open this repo in Gradient:
 
-[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/jax-gradient/blob/main/notebooks/quickstart.ipynb)
+[![Gradient](https://assets.paperspace.io/img/gradient-badge.svg)](https://console.paperspace.com/github/gradient-ai/jax-gradient/blob/main/notebooks/quickstart.ipynb?runtime=paperspace/gradient-base:pt112-tf29-jax0314-py39)
 
 ### For more information about Jax, go to https://github.com/google/jax
 
